@@ -1,0 +1,97 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}FB Page Management{% endblock %}
+
+{% block body %}
+  {% for message in form.update.errors %}
+       <div>{{ message }}</div>
+  {% endfor %}
+  <div class="container sm-margin-top">
+    <!-- FORM -->
+    <div class="row text-center">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <i class="fa fa-fw fa-4x fa-bullhorn text-primary"></i>
+        <h2>Post/Draft</h2>
+        <p class="text-muted">Draft or Post message into FB page</p>
+         <form action="" method ="post">
+             {{ form.hidden_tag() }}
+             <!--placeholder=form.update.label-->
+             {{form.update(placeholder="Enter message here", class="form-control")}}
+             <div class="container">
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker1'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker1').datetimepicker();
+                        });
+                    </script>
+                </div>
+             </div>
+             <button class="btn btn-warning" type="submit" name="submit" value="draft">Draft</button>
+             <button class="btn btn-success" type="submit" name="submit" value="post">Post</button>
+         </form>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+    <!-- DRAFTS -->
+    <div class="row">
+      <div class="col-sm-6">
+          <h3>Recent Drafts</h3>
+      </div>
+      <div class="col-sm-3">
+          <h3>Date Created</h3>
+      </div>
+      <div class="col-sm-3">
+          <h3>Action</h3>
+      </div>
+      {% for draft in drafts %}
+      <div class="row">
+          <div class="col-sm-6">
+            <p>{{ draft.message }}</p>
+          </div>
+          <div class="col-sm-3">
+              <p>{{ draft.created_time }}</p>
+          </div>
+          <div class="col-sm-3">
+              <p>[POST?]</p>
+          </div>
+      </div>
+      {% endfor %}
+    </div>
+    <!-- POSTS -->
+    <div class="row">
+      <div class="col-sm-6">
+          <h3>Recent Posts</h3>
+      </div>
+      <div class="col-sm-3">
+          <h3>Date Created</h3>
+      </div>
+      <div class="col-sm-3">
+          <h3>Views</h3>
+      </div>
+      {% for post in posts %}
+      <div class="row">
+          <div class="col-sm-6">
+            <p>{{ post.message }}</p>
+          </div>
+          <div class="col-sm-3">
+            <p>{{ post.created_time }}</p>
+          </div>
+          <div class="col-sm-3">
+              <p>0</p>
+          </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

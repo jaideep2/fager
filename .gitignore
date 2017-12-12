@@ -2,10 +2,11 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+config/
+.DS_STORE
 # C extensions
 *.so
-
+.idea/
 # Distribution / packaging
 .Python
 env/
